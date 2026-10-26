@@ -1,0 +1,550 @@
+
+/* ========================================
+   1. Global setup
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+}
+
+:root {
+  --sidebar-blue: #1996d2;
+  --button-blue: #1798d5;
+  --page-background: #e2e8f0;
+  --card-yellow: #f1b625;
+  --text-muted: #717171;
+  --panel-shadow: 0 2px 5px rgb(0 0 0 / 12%);
+}
+
+
+/* ========================================
+   2. Main dashboard grid
+======================================== */
+
+.dashboard {
+  height: 100vh;
+  min-height: 800px;
+
+  display: grid;
+  grid-template-columns: 253px minmax(0, 1fr);
+  grid-template-rows: 152px minmax(0, 1fr);
+
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+}
+
+
+/* ========================================
+   3. Sidebar
+======================================== */
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--sidebar-blue);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  height: 74px;
+  padding: 20px 19px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  color: white;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.icon-light {
+  filter: brightness(0) invert(1);
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.side-navigation {
+  margin-top: 18px;
+}
+
+.navigation-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  height: 41px;
+  padding-left: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 21px;
+
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  background-color: rgb(255 255 255 / 12%);
+}
+
+.nav-link:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid white;
+  outline-offset: -3px;
+}
+
+.secondary-links {
+  margin-top: 45px;
+}
+
+
+/* ========================================
+   4. Header and top search row
+======================================== */
+
+.top-header {
+  grid-area: header;
+  min-width: 0;
+
+  display: grid;
+  grid-template-rows: 64px 88px;
+
+  background-color: white;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 12%);
+  z-index: 1;
+}
+
+.topbar {
+  min-width: 0;
+  padding: 0 58px 0 36px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.search-area {
+  min-width: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: 18px minmax(0, 506px);
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  display: grid;
+  place-items: center;
+}
+
+.search-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.search-input {
+  width: 100%;
+  min-width: 0;
+  height: 27px;
+  padding: 0 12px;
+
+  border: none;
+  border-radius: 999px;
+  background-color: var(--page-background);
+}
+
+.search-input:focus-visible {
+  outline: 2px solid var(--sidebar-blue);
+}
+
+.topbar-actions {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.notification-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.account-summary {
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  gap: 24px;
+
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   5. Avatars
+======================================== */
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+  font-size: 22px;
+  overflow: hidden;
+}
+
+.avatar-cat {
+  background-color: #ffd21a;
+}
+
+.avatar-dinosaur {
+  background-color: #dff2ff;
+}
+
+.avatar-orange {
+  background-color: #b7b7b7;
+}
+
+.avatar-pink {
+  background-color: #ffb2c4;
+}
+
+.avatar-large {
+  width: 62px;
+  height: 62px;
+  font-size: 34px;
+}
+
+
+/* ========================================
+   6. Welcome row and action buttons
+======================================== */
+
+.welcome-row {
+  min-width: 0;
+  padding: 0 45px 0 38px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.welcome-profile {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.welcome-copy {
+  min-width: 0;
+}
+
+.greeting {
+  margin: 0 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.welcome-copy h1 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.quick-actions button {
+  width: 84px;
+  height: 34px;
+  padding: 0 10px;
+
+  border: none;
+  border-radius: 999px;
+  background-color: var(--button-blue);
+  color: white;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.quick-actions button:hover {
+  background-color: #087fb8;
+}
+
+.quick-actions button:focus-visible {
+  outline: 2px solid #075f96;
+  outline-offset: 3px;
+}
+
+
+/* ========================================
+   7. Main content grid
+======================================== */
+
+.main-content {
+  grid-area: main;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+
+  padding: 26px 20px 50px 16px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 2.8fr) minmax(230px, 1fr);
+  gap: 18px;
+
+  background-color: var(--page-background);
+}
+
+.main-content h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+
+/* ========================================
+   8. Projects section and project cards
+======================================== */
+
+.projects-section {
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.project-grid {
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+.project-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 28px 18px 18px;
+
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+
+  border-left: 6px solid var(--card-yellow);
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: var(--panel-shadow);
+}
+
+.project-copy {
+  min-width: 0;
+}
+
+.project-copy h3 {
+  margin: 0 0 3px;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.project-copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.project-actions button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: none;
+  background: transparent;
+}
+
+.project-actions img {
+  width: 19px;
+  height: 19px;
+  opacity: 0.85;
+}
+
+.project-actions button:hover img {
+  opacity: 0.55;
+}
+
+.project-actions button:focus-visible {
+  outline: 2px solid var(--sidebar-blue);
+  border-radius: 3px;
+}
+
+
+/* ========================================
+   9. Right-hand rail
+======================================== */
+
+.right-rail {
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+  grid-template-rows: 301px minmax(0, 1fr);
+  gap: 30px;
+}
+
+.announcements-section,
+.trending-section {
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.panel {
+  min-width: 0;
+  min-height: 0;
+
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: var(--panel-shadow);
+}
+
+
+/* ========================================
+   10. Announcements panel
+======================================== */
+
+.announcements-panel {
+  padding: 26px 21px 18px;
+  overflow: hidden;
+}
+
+.announcement h3 {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.announcement p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.15;
+}
+
+.announcement + .announcement {
+  margin-top: 13px;
+  padding-top: 13px;
+  border-top: 1px solid #d5d5d5;
+}
+
+
+/* ========================================
+   11. Trending panel
+======================================== */
+
+.trending-panel {
+  padding: 18px 19px;
+
+  display: grid;
+  align-content: start;
+  gap: 20px;
+}
+
+.trending-item {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.trending-copy {
+  min-width: 0;
+  font-size: 12px;
+}
+
+.trending-copy p {
+  margin: 0 0 3px;
+  color: #111827;
+}
+
+.trending-copy span {
+  display: block;
+  color: var(--text-muted);
+}
